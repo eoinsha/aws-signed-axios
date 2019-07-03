@@ -4,11 +4,7 @@ const AWS = require('aws-sdk')
 const aws4 = require('aws4')
 const axios = require('axios')
 
-module.exports = {
-  signedAxios
-}
-
-function signedAxios(request) {
+module.exports = function signedAxios(request) {
   const { host, pathname, search } = new URL(request.url)
   request.host = host
   request.path = pathname + search
