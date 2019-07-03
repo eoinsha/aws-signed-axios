@@ -1,7 +1,8 @@
 'use strict'
 
+const AWS = require('aws-sdk')
+const aws4 = require('aws4')
 const axios = require('axios')
-const AWS = require('aws')
 
 module.exports = {
   signedAxios
