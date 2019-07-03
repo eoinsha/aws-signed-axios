@@ -4,7 +4,8 @@
   "description": "Make AWS4-signed HTTP requests",
   "main": "index.js",
   "scripts": {
-    "test": "echo"
+    "lint": "eslint",
+    "test": "tap test/**/*.test.js"
   },
   "repository": {
     "type": "git",
@@ -25,6 +26,14 @@
     "aws-sdk": "*"
   },
   "devDependencies": {
-    "aws-sdk": "^2.487.0"
+    "aws-sdk": "^2.487.0",
+    "eslint": "^6.0.1",
+    "eslint-config-standard": "^12.0.0",
+    "eslint-plugin-import": "^2.18.0",
+    "eslint-plugin-node": "^9.1.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.0",
+    "proxyquire": "^2.1.0",
+    "tap": "^14.4.0"
   }
 }
