@@ -1,6 +1,6 @@
 {
   "name": "aws-signed-axios",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Make AWS4-signed HTTP requests",
   "main": "index.js",
   "scripts": {
