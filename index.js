@@ -10,9 +10,15 @@ module.exports = function signedAxios (request) {
   const { host, pathname, search } = new URL(request.url)
   request.host = host
   request.path = pathname + search
-  request.body = request.data
-  request.headers = {
-    'Content-Type': 'application/json'
+
+  let body = request.data
+  if (body) {
+    if (typeof body === 'object') {
+      body = JSON.stringify(body)
+      request.data = body
+      request.headers = request.headers || {}
+      request.headers['Content-Type'] = 'application/json'
+    }
   }
 
   const signedRequest = aws4.sign(request, {

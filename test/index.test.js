@@ -39,7 +39,7 @@ test('Request is signed', async t => {
   })
 
   t.equal(received.signArgs.request.host, 'api.example.com')
-  t.same(received.requestArgs[0].data, payload)
+  t.same(JSON.parse(received.requestArgs[0].data), payload)
 
   t.same(result, {})
   t.end()
