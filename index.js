@@ -10,6 +10,7 @@ module.exports = function signedAxios (request) {
   const { host, pathname, search } = new URL(request.url)
   request.host = host
   request.path = pathname + search
+  request.body = request.data
   request.headers = {
     'Content-Type': 'application/json'
   }
