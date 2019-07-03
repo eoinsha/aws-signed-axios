@@ -1,0 +1,26 @@
+{
+  "name": "aws-signed-axios",
+  "version": "1.0.0",
+  "description": "Make AWS4-signed HTTP requests",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eoinsha/aws-signed-axios.git"
+  },
+  "keywords": [
+    "aws4",
+    "signed",
+    "axios"
+  ],
+  "author": "Eoin Shanaghy <eoin.shanaghy@fourtheorem.com",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.19.0"
+  },
+  "peedDependencies": {
+    "aws-sdk": "*"
+  }
+}
