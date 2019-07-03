@@ -1,5 +1,7 @@
 'use strict'
 
+const { URL } = require('url')
+
 const AWS = require('aws-sdk')
 const aws4 = require('aws4')
 const axios = require('axios')
