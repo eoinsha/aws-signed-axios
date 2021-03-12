@@ -6,9 +6,14 @@ const AWS = require('aws-sdk')
 const aws4 = require('aws4')
 const axios = require('axios')
 
-module.exports = function signedAxios (request, options) {
+module.exports = function signedAxios (request) {
+  const { headers = {} } = request
   const { host, pathname, search } = new URL(request.url)
-  request.host = host
+  const [, hostHeader] =
+    Object.entries(headers).find(
+      ([prop, value]) => prop.toLowerCase() === 'host'
+    ) || []
+  request.host = hostHeader || host
   request.path = pathname + search
 
   let body = request.data
@@ -21,19 +26,25 @@ module.exports = function signedAxios (request, options) {
     }
   }
 
-  const { secretAccessKey, accessKeyId, sessionToken } = AWS.config.credentials || options || {}
+  const { secretAccessKey, accessKeyId, sessionToken } = AWS.config.credentials || {}
 
-  const signedRequest = aws4.sign({
-    ...request,
-    body
-  }, {
-    secretAccessKey,
-    accessKeyId,
-    sessionToken,
-    body
-  })
+  const signedRequest = aws4.sign(
+    {
+      ...request,
+      body
+    },
+    {
+      secretAccessKey,
+      accessKeyId,
+      sessionToken
+    }
+  )
 
-  delete signedRequest.headers['Host']
-  delete signedRequest.headers['Content-Length']
+  if (signedRequest.headers) {
+    if (!hostHeader) {
+      delete signedRequest.headers.Host
+      delete signedRequest.headers['Content-Length']
+    }
+  }
   return axios.request(signedRequest)
 }
